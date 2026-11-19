@@ -1,12 +1,11 @@
 {
-    "id": 57436521,
-    "name": "SAMPLELEVEL2",
-    "author": "Solo_Creator",
-    "creators": [],
-    "verifier": "Solo_Creator",
-    "verification": "https://www.youtube.com/watch?v=ISTl28wKSXc",
-    "percentToQualify": "100",
-    "password": "Free To Copy",
-    "records": [
-    ]
+    "id": 68668045,
+    "name": "Congregation",
+    "author": "Presta",
+    "creators": ["Presta"],
+    "verifier": "Kyuux7",
+    "verification": "https://www.youtube.com/watch?v=a7CE00bQJOs",
+    "percentToQualify": 59,
+    "password": "Free Copy",
+    "records": []
 }
