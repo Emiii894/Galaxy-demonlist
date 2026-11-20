@@ -1,0 +1,17 @@
+{
+    "id": 78702042,
+    "name": "TROLLMACHINE",
+    "author": "Trollm4chine",
+    "creators": ["Trollm4chine"],
+    "verifier": "MEMOGDS",
+    "verification": "https://www.youtube.com/watch?v=ydbtDbmALPA&t=19s",
+    "percentToQualify": 56,
+    "password": "Free Copy",
+    "records": [
+        {
+            "user": "Kyuux7",
+            "link": "https://www.youtube.com/watch?v=WpGz-QAQHfM",
+            "percent": 100
+        }
+    ]
+}
