@@ -1,0 +1,22 @@
+{
+    "id": 23540328,
+    "name": "Allegiance",
+    "author": "nikroplays",
+    "creators": ["EndLevel", "nikroplays", "Renevant"],
+    "verifier": "M4Y30_GDA",
+    "verification": "https://www.youtube.com/watch?v=CRkJTPbOuzA",
+    "percentToQualify": 56,
+    "password": "Free Copy",
+    "records": [
+        {
+            "user": "Kyuux7",
+            "link": "https://www.youtube.com/watch?v=uyOeOriv188",
+            "percent": 100
+        },
+        {
+            "user": "GaxZGD",
+            "link": "https://www.youtube.com/watch?v=-1cjoHxu6KE",
+            "percent": 82
+        }
+    ]
+}
