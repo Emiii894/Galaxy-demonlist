@@ -1,12 +1,9 @@
 import { fetchList } from '../content.js';
-import { getYoutubeIdFromUrl } from '../util.js';
 import Spinner from '../components/Spinner.js';
-import LevelAuthors from '../components/List/LevelAuthors.js';
 
 export default {
     components: {
         Spinner,
-        LevelAuthors,
     },
     template: `
         <main v-if="loading">
@@ -100,7 +97,6 @@ export default {
                 })
                 .filter(Boolean);
 
-            // Calcular automáticamente qué jugadores tienen 100% (o son verifiers) en TODOS los niveles del pack
             const playersPerLevel = resolvedLevels.map((lvl) => {
                 const completers = new Set();
                 if (lvl.verifier) completers.add(lvl.verifier.toLowerCase());
@@ -110,7 +106,6 @@ export default {
                 return completers;
             });
 
-            // Obtener nombres originales con mayúsculas/minúsculas correctas
             const nameMap = {};
             resolvedLevels.forEach((lvl) => {
                 if (lvl.verifier) nameMap[lvl.verifier.toLowerCase()] = lvl.verifier;
