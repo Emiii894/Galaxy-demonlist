@@ -46,8 +46,19 @@ export async function fetchEditors() {
     }
 }
 
+export async function fetchPacks() {
+    try {
+        const packsResult = await fetch(`${dir}/_packs.json`);
+        const packs = await packsResult.json();
+        return packs;
+    } catch {
+        return [];
+    }
+}
+
 export async function fetchLeaderboard() {
     const list = await fetchList();
+    const packs = await fetchPacks();
 
     const scoreMap = {};
     const errs = [];
@@ -65,6 +76,7 @@ export async function fetchLeaderboard() {
             verified: [],
             completed: [],
             progressed: [],
+            packs: [],
         };
         const { verified } = scoreMap[verifier];
         verified.push({
@@ -83,6 +95,7 @@ export async function fetchLeaderboard() {
                 verified: [],
                 completed: [],
                 progressed: [],
+                packs: [],
             };
             const { completed, progressed } = scoreMap[user];
             if (record.percent === 100) {
@@ -105,20 +118,5 @@ export async function fetchLeaderboard() {
         });
     });
 
-    // Wrap in extra Object containing the user and total score
-    const res = Object.entries(scoreMap).map(([user, scores]) => {
-        const { verified, completed, progressed } = scores;
-        const total = [verified, completed, progressed]
-            .flat()
-            .reduce((prev, cur) => prev + cur.score, 0);
-
-        return {
-            user,
-            total: round(total),
-            ...scores,
-        };
-    });
-
-    // Sort by total score
-    return [res.sort((a, b) => b.total - a.total), errs];
-}
+    // Packs bonus calculation
+    if
