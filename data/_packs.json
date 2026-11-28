@@ -3,8 +3,8 @@
         "name": "Sonic Wave Pack",
         "points": 50,
         "levels": [
-            "sonic_wave_rebirth",
-            "sonic_wave",
+            "Sample_Level_3",
+            "sonic wave",
             "auditory_breaker"
         ],
         "colour": "#0088FF"
