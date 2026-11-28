@@ -119,4 +119,58 @@ export async function fetchLeaderboard() {
     });
 
     // Packs bonus calculation
-    if
+    if (packs && packs.length > 0) {
+        packs.forEach((pack) => {
+            if (!pack.levels || pack.levels.length === 0) return;
+
+            const playersPerLevel = pack.levels.map((levelPath) => {
+                const found = list.find(([lvl]) => lvl && lvl.path === levelPath);
+                const completers = new Set();
+                if (found && found[0]) {
+                    const lvl = found[0];
+                    if (lvl.verifier) completers.add(lvl.verifier.toLowerCase());
+                    (lvl.records || []).forEach((rec) => {
+                        if (rec.percent === 100) {
+                            completers.add(rec.user.toLowerCase());
+                        }
+                    });
+                }
+                return completers;
+            });
+
+            const firstSet = [...playersPerLevel[0]];
+            const packWinners = firstSet.filter((playerLower) =>
+                playersPerLevel.every((set) => set.has(playerLower)),
+            );
+
+            packWinners.forEach((winnerLower) => {
+                const user = Object.keys(scoreMap).find(
+                    (u) => u.toLowerCase() === winnerLower,
+                );
+                if (user && scoreMap[user]) {
+                    scoreMap[user].packs.push({
+                        name: pack.name,
+                        score: pack.points || 0,
+                    });
+                }
+            });
+        });
+    }
+
+    // Wrap in extra Object containing the user and total score
+    const res = Object.entries(scoreMap).map(([user, scores]) => {
+        const { verified, completed, progressed, packs: userPacks } = scores;
+        const total = [verified, completed, progressed, userPacks]
+            .flat()
+            .reduce((prev, cur) => prev + cur.score, 0);
+
+        return {
+            user,
+            total: round(total),
+            ...scores,
+        };
+    });
+
+    // Sort by total score
+    return [res.sort((a, b) => b.total - a.total), errs];
+}
